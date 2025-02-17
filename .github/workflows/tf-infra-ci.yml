@@ -1,4 +1,4 @@
-name: terraform-ci
+name: Terraform_CI
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  build:
-    name: setup-tf
+  terraform:
+    name: Terraform Validation
     runs-on: ubuntu-latest
 
     steps:
@@ -17,14 +17,11 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
 
-      - name: Terraform Init
-        run: terraform init -backend=false 
-
       - name: Terraform Format Check
-        run: terraform fmt 
+        run: terraform fmt -check -recursive
 
       - name: Terraform Validate
-        run: terraform validate  
-
+        run: terraform validate
+      
       - name: Success Message
         run: echo "Terraform validation successful"
