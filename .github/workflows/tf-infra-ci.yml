@@ -1,0 +1,30 @@
+name: terraform-ci
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: setup-tf
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init -backend=false 
+
+      - name: Terraform Format Check
+        run: terraform fmt 
+
+      - name: Terraform Validate
+        run: terraform validate  
+
+      - name: Success Message
+        run: echo "Terraform validation successful"
