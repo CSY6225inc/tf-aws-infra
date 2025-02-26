@@ -27,3 +27,19 @@ variable "profile" {
   type        = string
   default     = "dev"
 }
+variable "vpc_subnet_mask" {
+  description = "Subnet mask for the VPC subnets"
+  type        = number
+  default     = 4
+}
+
+variable "custom_ami_id" {
+  description = "The custom AMI ID built via Packer"
+  type        = string
+}
+
+variable "server_port" {
+  description = "Port on which the web application listens"
+  type        = number
+  default     = 8080
+}
