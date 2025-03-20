@@ -43,3 +43,68 @@ variable "server_port" {
   type        = number
   default     = 8080
 }
+
+variable "ami_id" {
+  description = "ami value"
+  type = string
+  default = "value"
+}
+
+variable "account_id" {
+  type = string
+  default = "value"
+}
+
+variable "application_port" {
+  description = "Port on which your application runs"
+  type        = number
+  default     = 3000
+}
+
+variable "instance_type" {
+  description = "Type of EC2 instance"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "root_volume_size" {
+  description = "Size of the root volume in GB"
+  type        = number
+  default     = 25
+}
+
+variable "key_name" {
+  description = "SSH key pair to access EC2"
+  type        = string
+  default     = ""
+}
+
+variable "db_password" {
+  description = "Password for the database"
+  type        = string
+  default     = "password"
+}
+
+variable "database_name" {
+  description = "Name of the database"
+  type        = string
+  default     = "postgres"
+}
+
+variable "db_username" {
+  description = "Username for the database"
+  type        = string
+  default     = "postgres"
+}
+
+variable "aws_access_key_id" {
+  description = "AWS Access Key ID"
+  type        = string
+  sensitive   = true
+}
+
+variable "aws_secret_access_key" {
+  description = "AWS Secret Access Key"
+  type        = string
+  sensitive   = true
+}
