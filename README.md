@@ -45,3 +45,13 @@ You can tweak these values in the `variables.tf` file to fit your needs:
    ```bash
    terraform destroy 
    ```
+5. **Get RDS instance name:**
+   ```bash 
+   aws rds describe-db-instances --query "DBInstances[*].[DBInstanceIdentifier,Endpoint.Address]" --output table
+   ```
+6. Other commands
+   ```bash
+   sudo apt-get install -y postgresql postgresql-contrib
+   
+    psql -h csye6225 -U postgres -d postgres
+   ```
