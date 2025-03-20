@@ -72,5 +72,5 @@ resource "aws_db_instance" "rds_instance" {
   tags = {
     Name = "csye6225"
   }
-   depends_on = [aws_iam_service_linked_role.rds_service_role]
+  depends_on = [aws_iam_service_linked_role.rds_service_role]
 }

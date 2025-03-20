@@ -62,14 +62,14 @@ resource "aws_instance" "web_app_instance" {
     delete_on_termination = true
   }
   user_data = templatefile("./scripts/user_data_script.sh", {
-    DB_HOST             = substr(aws_db_instance.rds_instance.endpoint, 0, length(aws_db_instance.rds_instance.endpoint) - 5)
-    DB_USER             = var.db_username
-    DB_PASSWORD         = var.db_password
-    DB_NAME             = var.database_name
-    APP_PORT            = var.application_port
-    S3_BUCKET_NAME      = aws_s3_bucket.bucket.bucket
-    AWS_REGION          = var.region
-    AWS_ACCESS_KEY_ID   = var.aws_access_key_id
+    DB_HOST               = substr(aws_db_instance.rds_instance.endpoint, 0, length(aws_db_instance.rds_instance.endpoint) - 5)
+    DB_USER               = var.db_username
+    DB_PASSWORD           = var.db_password
+    DB_NAME               = var.database_name
+    APP_PORT              = var.application_port
+    S3_BUCKET_NAME        = aws_s3_bucket.bucket.bucket
+    AWS_REGION            = var.region
+    AWS_ACCESS_KEY_ID     = var.aws_access_key_id
     AWS_SECRET_ACCESS_KEY = var.aws_secret_access_key
   })
   tags = {

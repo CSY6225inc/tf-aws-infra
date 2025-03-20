@@ -18,13 +18,13 @@ resource "aws_iam_policy" "s3_bucket_policy" {
           "s3:DeleteObject"
         ],
         Resource = [
-          "arn:aws:s3:::${aws_s3_bucket.bucket.bucket}", 
+          "arn:aws:s3:::${aws_s3_bucket.bucket.bucket}",
           "arn:aws:s3:::${aws_s3_bucket.bucket.bucket}/*"
         ]
       }
     ]
   })
-  
+
   depends_on = [aws_s3_bucket.bucket]
 }
 

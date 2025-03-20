@@ -46,12 +46,12 @@ variable "server_port" {
 
 variable "ami_id" {
   description = "ami value"
-  type = string
-  default = "value"
+  type        = string
+  default     = "value"
 }
 
 variable "account_id" {
-  type = string
+  type    = string
   default = "value"
 }
 
