@@ -86,6 +86,10 @@ resource "aws_s3_bucket_lifecycle_configuration" "lifecycle_rule" {
   }
 }
 
+resource "aws_iam_instance_profile" "file_bucket_instance_profile" {
+  name = "fileBucketInstanceProfile"
+  role = aws_iam_role.s3_access_role.name
+}
 # resource "aws_kms_key" "kms_s3_key" {
 #   description             = "This key is used to encrypt S3 buckets"
 #   deletion_window_in_days = 10
