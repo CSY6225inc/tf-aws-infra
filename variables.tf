@@ -44,12 +44,6 @@ variable "server_port" {
   default     = 8080
 }
 
-variable "ami_id" {
-  description = "ami value"
-  type        = string
-  default     = "value"
-}
-
 variable "account_id" {
   type    = string
   default = "value"
@@ -97,14 +91,8 @@ variable "db_username" {
   default     = "postgres"
 }
 
-variable "aws_access_key_id" {
-  description = "AWS Access Key ID"
+variable "node_env" {
+  description = "Node environment"
   type        = string
-  sensitive   = true
-}
-
-variable "aws_secret_access_key" {
-  description = "AWS Secret Access Key"
-  type        = string
-  sensitive   = true
+  default     = "production"
 }
