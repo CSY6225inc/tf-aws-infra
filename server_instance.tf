@@ -70,7 +70,7 @@ resource "aws_instance" "web_app_instance" {
     APP_PORT       = var.application_port
     S3_BUCKET_NAME = aws_s3_bucket.bucket.bucket
     AWS_REGION     = var.region
-    NODE_ENV = var.node_env
+    NODE_ENV       = var.node_env
   })
   tags = {
     Name = "web-app-instance"

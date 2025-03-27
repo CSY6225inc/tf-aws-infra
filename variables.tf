@@ -93,6 +93,6 @@ variable "db_username" {
 
 variable "node_env" {
   description = "Node environment"
-  type = string
-  default="production"
+  type        = string
+  default     = "production"
 }
