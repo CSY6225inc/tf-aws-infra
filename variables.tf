@@ -96,3 +96,13 @@ variable "node_env" {
   type        = string
   default     = "production"
 }
+variable "instance_public_ip" {
+  description = "EC2 instance public IP address"
+  default     = ""
+}
+
+variable "domain_name" {
+  description = "domain name user defined"
+  type        = string
+  default     = "bhuvanraj.me"
+}
