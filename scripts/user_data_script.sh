@@ -15,6 +15,7 @@ DB_NAME=${DB_NAME}
 S3_BUCKET_NAME=${S3_BUCKET_NAME}
 AWS_REGION=${AWS_REGION}
 NODE_ENV=${NODE_ENV}
+PORT=${PORT}
 
 # Log variables for debugging
 echo "DB_HOST=${DB_HOST}"
@@ -24,6 +25,7 @@ echo "DB_DATABASE=${DB_NAME}"
 echo "S3_BUCKET_NAME=${S3_BUCKET_NAME}"
 echo "AWS_REGION=${AWS_REGION}"
 echo "NODE_ENV=${NODE_ENV}"
+echo "PORT=${PORT}"
 
 # Update .env file in /opt/csye6225/
 sudo -u csye6225 bash -c "sed -i '/^DB_HOST=/d' /opt/csye6225/.env && echo \"DB_HOST=${DB_HOST}\" >> /opt/csye6225/.env"
@@ -31,6 +33,7 @@ sudo -u csye6225 bash -c "sed -i '/^DB_USER=/d' /opt/csye6225/.env && echo \"DB_
 sudo -u csye6225 bash -c "sed -i '/^DB_PASSWORD=/d' /opt/csye6225/.env && echo \"DB_PASSWORD=${DB_PASSWORD}\" >> /opt/csye6225/.env"
 sudo -u csye6225 bash -c "sed -i '/^DB_DATABASE=/d' /opt/csye6225/.env && echo \"DB_DATABASE=${DB_NAME}\" >> /opt/csye6225/.env"
 sudo -u csye6225 bash -c "sed -i '/^DB_PORT=/d' /opt/csye6225/.env && echo \"DB_PORT=5432\" >> /opt/csye6225/.env"
+sudo -u csye6225 bash -c "sed -i '/^PORT=/d' /opt/csye6225/.env && echo \"PORT=${PORT}\" >> /opt/csye6225/.env"
 
 # Add AWS credentials to .env
 sudo -u csye6225 bash -c "sed -i '/^S3_BUCKET_NAME=/d' /opt/csye6225/.env && echo \"S3_BUCKET_NAME=${S3_BUCKET_NAME}\" >> /opt/csye6225/.env"

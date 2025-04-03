@@ -1,20 +1,16 @@
-resource "aws_route53_zone" "main" {
-  name = var.domain_name
+data "aws_route53_zone" "primary" {
+  name         = "${var.domain_name}.${var.sub_domain_name}"
+  private_zone = false
 }
 
-
-resource "aws_route53_record" "dev" {
-  zone_id = aws_route53_zone.main.zone_id
-  name    = "dev.${var.domain_name}"
+resource "aws_route53_record" "app_alias" {
+  zone_id = data.aws_route53_zone.primary.zone_id
+  name    = ""
   type    = "A"
-  ttl     = 300
-  records = [var.instance_public_ip]
-}
 
-resource "aws_route53_record" "demo" {
-  zone_id = aws_route53_zone.main.zone_id
-  name    = "demo.${var.domain_name}"
-  type    = "A"
-  ttl     = 300
-  records = [var.instance_public_ip]
+  alias {
+    name                   = aws_lb.app_load_balancer.dns_name
+    zone_id                = aws_lb.app_load_balancer.zone_id
+    evaluate_target_health = true
+  }
 }
