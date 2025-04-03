@@ -44,42 +44,45 @@ sudo -u csye6225 bash -c "sed -i '/^NODE_ENV=/d' /opt/csye6225/.env && echo \"NO
 sudo chown csye6225:csye6225 /opt/csye6225/.env
 sudo chmod 600 /opt/csye6225/.env
 
+cp /home/ubuntu/amazon-cloudwatch-agent.json /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json -s
+sudo systemctl restart csye6225.service
 # Restart web application
 # sudo systemctl daemon-reload
 
 # CloudWatch Agent Config
-sudo tee /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json > /dev/null <<EOF
-{
-  "metrics": {
-    "namespace": "webapplogs",
-    "append_dimensions": false,
-    "metrics_collected": {
-      "statsd": {
-        "service_address": ":8125",
-        "metrics_collection_interval": 60,
-        "metrics_aggregation_interval": 300
-      }
-    }
-  },
-  "logs": {
-    "logs_collected": {
-      "files": {
-        "collect_list": [
-          {
-            "file_path": "/var/log/syslog",
-            "log_group_name": "/csye6225-web-app/logs",
-            "log_stream_name": "web-app",
-            "retention_in_days": 1
-          }
-        ]
-      }
-    }
-  }
-}
-EOF
+# sudo tee /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json > /dev/null <<EOF
+# {
+#   "metrics": {
+#     "namespace": "webapplogs",
+#     "append_dimensions": false,
+#     "metrics_collected": {
+#       "statsd": {
+#         "service_address": ":8125",
+#         "metrics_collection_interval": 60,
+#         "metrics_aggregation_interval": 300
+#       }
+#     }
+#   },
+#   "logs": {
+#     "logs_collected": {
+#       "files": {
+#         "collect_list": [
+#           {
+#             "file_path": "/var/log/syslog",
+#             "log_group_name": "/csye6225-web-app/logs",
+#             "log_stream_name": "web-app",
+#             "retention_in_days": 1
+#           }
+#         ]
+#       }
+#     }
+#   }
+# }
+# EOF
 
 # Set CloudWatch config permissions
-sudo chown cwagent:cwagent /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
-sudo chmod 644 /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
-sudo systemctl restart csye6225.service
-sudo systemctl restart amazon-cloudwatch-agent  
+# sudo chown cwagent:cwagent /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+# sudo chmod 644 /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json
+# sudo systemctl restart csye6225.service
+# sudo systemctl restart amazon-cloudwatch-agent  
