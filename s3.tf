@@ -87,7 +87,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "lifecycle_rule" {
 }
 
 resource "aws_iam_instance_profile" "file_bucket_instance_profile" {
-  name = "fileBucketInstanceProfile"
+  name = "ec2-s3-access-instance-profile"
   role = aws_iam_role.s3_access_role.name
 }
 # resource "aws_kms_key" "kms_s3_key" {

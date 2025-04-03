@@ -96,3 +96,24 @@ variable "node_env" {
   type        = string
   default     = "production"
 }
+
+variable "domain_name" {
+  description = "domain name user defined"
+  type        = string
+  default     = "demo"
+}
+variable "sub_domain_name" {
+  description = "sub domain name user defined"
+  type        = string
+  default     = "bhuvanraj.me"
+}
+
+variable "lb_dns_name" {
+  description = "The DNS name of the load balancer"
+  type        = string
+}
+
+variable "lb_zone_id" {
+  description = "The Zone ID of the load balancer"
+  type        = string
+}
