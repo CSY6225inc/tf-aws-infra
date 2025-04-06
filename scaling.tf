@@ -109,13 +109,31 @@ resource "aws_lb_target_group" "app_target_group" {
 }
 
 # ALB Listener
+# resource "aws_lb_listener" "app_listener" {
+#   load_balancer_arn = aws_lb.app_load_balancer.arn
+#   port              = 80
+#   protocol          = "HTTP"
+
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.app_target_group.arn
+#   }
+# }
+
+# moved from http to https port 80 to 443 with SSL certificate
 resource "aws_lb_listener" "app_listener" {
   load_balancer_arn = aws_lb.app_load_balancer.arn
-  port              = 80
-  protocol          = "HTTP"
+  port              = 443
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = var.certificate_arn
 
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.app_target_group.arn
+  }
+
+  tags = {
+    Environment = "demo"
   }
 }

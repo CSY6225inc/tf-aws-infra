@@ -117,3 +117,8 @@ variable "lb_zone_id" {
   description = "The Zone ID of the load balancer"
   type        = string
 }
+
+variable "certificate_arn" {
+  description = "arn for load balancer listener to allow HTTPS SSL certificate"
+  type        = string
+}
