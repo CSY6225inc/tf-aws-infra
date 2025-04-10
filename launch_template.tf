@@ -1,5 +1,5 @@
 resource "aws_launch_template" "csye6225_asg" {
-  name_prefix   = "webapp-launch-template-"
+  name          = "webapp-launch-template"
   image_id      = var.custom_ami_id
   instance_type = var.instance_type
   key_name      = var.key_name
