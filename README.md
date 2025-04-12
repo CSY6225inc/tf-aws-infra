@@ -55,3 +55,7 @@ You can tweak these values in the `variables.tf` file to fit your needs:
    
     psql -h csye6225 -U postgres -d postgres
    ```
+7. Command to import ssl 
+```bash
+ aws acm import-certificate --certificate fileb://C:\Users\bhuva\Downloads\Extraction\demo_bhuvanraj_me.crt --private-key fileb://C:\Users\bhuva\demo.bhuvanraj.me.key --certificate-chain fileb://C:\Users\bhuva\Downloads\Extraction\demo_bhuvanraj_me.ca-bundle --region us-east-1
+```
