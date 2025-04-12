@@ -91,6 +91,18 @@ variable "db_username" {
   default     = "postgres"
 }
 
+variable "db_dialect" {
+  description = "Username for the database"
+  type        = string
+  default     = "postgres"
+}
+
+variable "db_port" {
+  description = "Username for the database"
+  type        = number
+  default     = 5432
+}
+
 variable "node_env" {
   description = "Node environment"
   type        = string
@@ -115,5 +127,10 @@ variable "lb_dns_name" {
 
 variable "lb_zone_id" {
   description = "The Zone ID of the load balancer"
+  type        = string
+}
+
+variable "certificate_arn" {
+  description = "arn for load balancer listener to allow HTTPS SSL certificate"
   type        = string
 }

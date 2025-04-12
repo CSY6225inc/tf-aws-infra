@@ -1,8 +1,9 @@
 # Auto Scaling Group
 resource "aws_autoscaling_group" "asg" {
+  name                      = "csye6225_asg"
   desired_capacity          = 3
   max_size                  = 5
-  min_size                  = 2
+  min_size                  = 3
   default_cooldown          = 60
   vpc_zone_identifier       = aws_subnet.public[*].id
   target_group_arns         = [aws_lb_target_group.app_target_group.arn]
@@ -109,13 +110,31 @@ resource "aws_lb_target_group" "app_target_group" {
 }
 
 # ALB Listener
+# resource "aws_lb_listener" "app_listener" {
+#   load_balancer_arn = aws_lb.app_load_balancer.arn
+#   port              = 80
+#   protocol          = "HTTP"
+
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.app_target_group.arn
+#   }
+# }
+
+# moved from http to https port 80 to 443 with SSL certificate
 resource "aws_lb_listener" "app_listener" {
   load_balancer_arn = aws_lb.app_load_balancer.arn
-  port              = 80
-  protocol          = "HTTP"
+  port              = 443
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = var.profile == "dev" ? aws_acm_certificate_validation.dev_cert_validation[0].certificate_arn : var.certificate_arn
 
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.app_target_group.arn
+  }
+
+  tags = {
+    Environment = "demo"
   }
 }
