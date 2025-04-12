@@ -57,5 +57,10 @@ You can tweak these values in the `variables.tf` file to fit your needs:
    ```
 7. Command to import ssl 
 ```bash
- aws acm import-certificate --certificate fileb://C:\Users\bhuva\Downloads\Extraction\demo_bhuvanraj_me.crt --private-key fileb://C:\Users\bhuva\demo.bhuvanraj.me.key --certificate-chain fileb://C:\Users\bhuva\Downloads\Extraction\demo_bhuvanraj_me.ca-bundle --region us-east-1
+aws acm import-certificate \
+  --certificate file://<path> \
+  --certificate-chain file://<path> \
+  --private-key file://<path> \
+  --region us-east-1 \
+  --profile demo
 ```

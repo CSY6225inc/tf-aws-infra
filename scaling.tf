@@ -127,14 +127,13 @@ resource "aws_lb_listener" "app_listener" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = var.profile == "dev" ? aws_acm_certificate_validation.dev_cert_validation[0].certificate_arn : var.certificate_arn
-
+  certificate_arn   = local.cert_arn
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.app_target_group.arn
   }
 
   tags = {
-    Environment = "demo"
+    Environment = var.profile
   }
 }
