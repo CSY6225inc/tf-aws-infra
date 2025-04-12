@@ -91,6 +91,18 @@ variable "db_username" {
   default     = "postgres"
 }
 
+variable "db_dialect" {
+  description = "Username for the database"
+  type        = string
+  default     = "postgres"
+}
+
+variable "db_port" {
+  description = "Username for the database"
+  type        = number
+  default     = 5432
+}
+
 variable "node_env" {
   description = "Node environment"
   type        = string
