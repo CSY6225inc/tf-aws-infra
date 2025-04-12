@@ -54,23 +54,26 @@ resource "aws_iam_service_linked_role" "rds_service_role" {
 
 # RDS Instance
 resource "aws_db_instance" "rds_instance" {
-  allocated_storage      = 20
-  instance_class         = "db.t3.micro"
-  engine                 = "postgres"
-  engine_version         = "16"
-  identifier             = "csye6225"
-  db_name                = var.database_name
-  username               = var.db_username
-  password               = var.db_password
+  allocated_storage = 20
+  instance_class    = "db.t3.micro"
+  engine            = "postgres"
+  engine_version    = "16"
+  identifier        = "csye6225"
+  db_name           = var.database_name
+  username          = var.db_username
+  # password               = var.db_password
+  password               = random_password.db_password.result
   parameter_group_name   = aws_db_parameter_group.postgresql_parameter_group.name
   skip_final_snapshot    = true
   publicly_accessible    = false
   vpc_security_group_ids = [aws_security_group.database-security-group.id]
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.name # Using DB Subnet Group
   multi_az               = false
+  storage_encrypted      = true
+  kms_key_id             = aws_kms_key.rds_key.arn
 
   tags = {
     Name = "csye6225"
   }
-  depends_on = [aws_iam_service_linked_role.rds_service_role]
+  depends_on = [aws_iam_service_linked_role.rds_service_role, random_password.db_password]
 }
