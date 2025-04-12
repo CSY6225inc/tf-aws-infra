@@ -1,8 +1,5 @@
 #!/bin/bash
 echo "Setting up .env file..."
-# Enable logging for troubleshooting
-exec > /tmp/update_env.log 2>&1
-set -e
 # Remove any existing .env file
 rm -f /opt/csye6225/.env
 touch /opt/csye6225/.env
