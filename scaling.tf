@@ -127,7 +127,7 @@ resource "aws_lb_listener" "app_listener" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = var.certificate_arn
+  certificate_arn   = var.profile == "dev" ? aws_acm_certificate_validation.dev_cert_validation[0].certificate_arn : var.certificate_arn
 
   default_action {
     type             = "forward"
